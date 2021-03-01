@@ -1,0 +1,25 @@
+{
+  "name": "simple-ui-components",
+  "version": "1.0.0",
+  "description": "All kind of react components.",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Nimesh Deuja",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-react": "7.12.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "5.1.0",
+    "style-loader": "2.0.0",
+    "webpack": "5.4.0",
+    "webpack-cli": "4.5.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "17.0.1"
+  }
+}
