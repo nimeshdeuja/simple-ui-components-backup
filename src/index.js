@@ -1,3 +1,4 @@
-import Test from "./Test/test";
+import * as Hooks from "./Hooks/hooks";
+import Dailog from "./Dailog/dailog";
 
-export { Test };
+export { Hooks, Dailog };
