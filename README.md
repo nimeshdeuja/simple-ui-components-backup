@@ -1,4 +1,4 @@
-# prefix-components
+# simple-ui-components
 
 All kind of react components.
 
