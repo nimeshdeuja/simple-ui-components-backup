@@ -1,30 +1,121 @@
-.default > div {
+.default {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.full {
   width: 100%;
 }
+.half {
+  width: calc((100% - 20px) / 2);
+}
+.first {
+  margin-left: 0;
+}
+.notFirst {
+  margin-left: 20px;
+}
 
-.default > .text {
-  background-color: blueviolet !important;
+.default > .text > label,
+.default > .password > label,
+.default > .select > label,
+.default > .textarea > label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
 }
-.default > .password {
-  background-color: blueviolet !important;
+.default > .textarea > label > textarea {
+  resize: none;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.0625);
+  padding: 5px 10px;
+  border-radius: 4px;
 }
-.default > .select {
-  background-color: blueviolet !important;
+
+.default > .text > label > input,
+.default > .password > label > input,
+.default > .select > label > select {
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.0625);
+  padding: 5px 10px;
+  height: 35px;
+  border-radius: 4px;
 }
-.default > .checkbox {
-  background-color: blueviolet !important;
+
+.default > .select > label > select {
+  height: 45px;
 }
+.default > .checkbox > label {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.left > input {
+  margin-left: 10px;
+}
+.right > input {
+  margin-right: 10px;
+}
+
 .default > .radio {
-  background-color: blueviolet !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.default > .textarea {
-  background-color: blueviolet !important;
+.default > .radio > div {
+  width: 100%;
+  margin-bottom: 5px;
 }
-
+.default > .radio > label {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
 .default > .file {
-  background-color: blueviolet !important;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.default > .file > label {
+  display: flex;
+  flex-direction: column;
+}
+.default > .file > label > span {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.0625);
+  padding: 10px;
+  margin-bottom: 5px;
+  width: fit-content;
+}
+.default > .file > label > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.default > .file > label > div > b {
+  color: rgb(244, 67, 54);
+  margin-right: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.error {
+.error,
+.error * {
   color: rgb(244, 67, 54);
+}
+.error > input,
+.error > select,
+.error > textarea {
+  border: 1px solid rgba(244, 67, 54) !important;
+}
+.error > input:focus,
+.error > select:focus,
+.error > textarea:focus {
+  outline: 0;
 }

@@ -14,12 +14,13 @@ const Input = (props) => {
     invalid,
     shouldValidate,
     touched,
-    noMargin,
+    inputStyle,
     autoComplete = "Off",
   } = props;
 
-  let styleClass = className ? className : "";
-  let classes = `${invalid ? styles.error : ""} ${styleClass}`;
+  let classes = `${invalid && shouldValidate && touched ? styles.error : ""} ${[
+    className,
+  ]}`;
 
   let defaultInput = null;
   const uploadImageHandler = (event) => {
@@ -79,6 +80,9 @@ const Input = (props) => {
               placeholder={elementConfig && elementConfig.placeholder}
               onChange={(event) => changed(event.target.value, event)}
               value={value}
+              rows={
+                elementConfig && elementConfig.rows ? elementConfig.rows : 4
+              }
             ></textarea>
           </label>
         </React.Fragment>
@@ -106,28 +110,32 @@ const Input = (props) => {
       );
       break;
     case "checkbox":
+      let ele = (
+        <input
+          name="isGoing"
+          type="checkbox"
+          checked={value}
+          onChange={(event) => changed(event.target.checked, event)}
+        />
+      );
+      let checkboxElement = (
+        <>
+          {label}
+          {ele}
+        </>
+      );
+      if (elementConfig && elementConfig.labelText === "right")
+        checkboxElement = (
+          <>
+            {ele}
+            {label}
+          </>
+        );
       inputElement = (
         <React.Fragment>
-          {elementConfig && elementConfig.labelText === "left" && (
-            <label className={classes}>
-              {label}
-              <input
-                name="isGoing"
-                type="checkbox"
-                checked={value}
-                onChange={(event) => changed(event.target.checked, event)}
-              />
-            </label>
-          )}
-          {elementConfig && elementConfig.labelText === "right" && (
-            <label className={classes}>
-              <input
-                name="isGoing"
-                type="checkbox"
-                checked={value}
-                onChange={(event) => changed(event.target.checked, event)}
-              />
-              {label}
+          {elementConfig && (
+            <label className={`${classes} ${styles[elementConfig.labelText]}`}>
+              {checkboxElement}
             </label>
           )}
         </React.Fragment>
@@ -136,11 +144,10 @@ const Input = (props) => {
     case "radio":
       inputElement = (
         <React.Fragment>
+          <div>{label}</div>
           {elementConfig &&
-            elementConfig.labelText === "left" &&
-            elementConfig.options.map((item, index) => (
-              <label key={index} className={classes}>
-                {item.label}
+            elementConfig.options.map((item, index) => {
+              let ele = (
                 <input
                   type="radio"
                   name={item.name}
@@ -148,38 +155,60 @@ const Input = (props) => {
                   checked={value === item.value}
                   onChange={(event) => changed(event.target.value, event)}
                 />
-              </label>
-            ))}
-          {elementConfig &&
-            elementConfig.labelText === "right" &&
-            elementConfig.options.map((item, index) => (
-              <label key={index} className={classes}>
-                <input
-                  type="radio"
-                  name={item.name}
-                  value={item.value}
-                  checked={value === item.value}
-                  onChange={(event) => changed(event.target.value, event)}
-                />
-                {item.label}
-              </label>
-            ))}
+              );
+              let radioElement = (
+                <>
+                  {item.label}
+                  {ele}
+                </>
+              );
+              if (elementConfig && elementConfig.labelText === "right")
+                radioElement = (
+                  <>
+                    {ele}
+                    {item.label}
+                  </>
+                );
+
+              return (
+                <label
+                  className={`${classes} ${styles[elementConfig.labelText]}`}
+                  key={index}
+                >
+                  {radioElement}
+                </label>
+              );
+            })}
         </React.Fragment>
       );
       break;
     case "file":
       inputElement = (
-        <label
-          onClick={(event) => {
-            let button = document.getElementById(elementConfig.name);
-            button.click();
-          }}
-          className={classes}
-        >
-          {label}
-          {uploadedFile &&
-            uploadedFile[elementConfig.name] &&
-            `: ${uploadedFile[elementConfig.name]}`}
+        <label className={classes}>
+          <span
+            onClick={(event) => {
+              event.preventDefault();
+              let button = document.getElementById(elementConfig.name);
+              button.click();
+            }}
+          >
+            {label}
+          </span>
+          {uploadedFile && uploadedFile[elementConfig.name] && (
+            <div>
+              <b
+                onClick={(event) => {
+                  event.preventDefault();
+                  delete uploadedFile[elementConfig.name];
+                  document.getElementById(elementConfig.name).value = "";
+                  changed("", event);
+                }}
+              >
+                &times;
+              </b>
+              {uploadedFile[elementConfig.name]}
+            </div>
+          )}
           <input
             type="file"
             id={elementConfig.name}
@@ -199,7 +228,16 @@ const Input = (props) => {
       classElement = elementConfig.type;
     }
   }
-  return <div className={styles[classElement]}>{inputElement}</div>;
+
+  let inputStyleClass = inputStyle.width ? inputStyle.width : "full";
+  let isFirstElement = inputStyle.isFirst ? "first" : "notFirst";
+  return (
+    <div
+      className={`${styles[classElement]} ${styles[inputStyleClass]} ${styles[isFirstElement]}`}
+    >
+      {inputElement}
+    </div>
+  );
 };
 
 export default Input;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import style from "./dialog.module.css";
+import styles from "./dialog.module.css";
 
 const Dialog = (props) => {
   const closeAllClickHandler = (event) => {
@@ -9,19 +9,18 @@ const Dialog = (props) => {
     }
   };
   let moduleSize = props.size ? props.size : "md";
-  let isMultipleButton = props.isMultipleButton ? "multipal" : "";
   let themeElementClass = props.theme ? props.theme : "default";
 
   let dailogElement = null;
   if (props.open)
     dailogElement = (
       <div
-        className={style.modal}
+        className={styles.modal}
         onClick={closeAllClickHandler}
         title={props.title}
       >
         <div
-          className={`${style.modalContent} ${style[moduleSize]} ${style[isMultipleButton]} ${style[themeElementClass]}`}
+          className={`${styles.modalContent} ${styles[moduleSize]} ${styles[themeElementClass]}`}
         >
           <h2>
             {props.title} <span onClick={() => props.close()}>&times;</span>
@@ -36,7 +35,6 @@ const Dialog = (props) => {
 Dialog.prototype = {
   theme: PropTypes.string,
   size: PropTypes.string,
-  isMultipleButton: PropTypes.bool,
   close: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
