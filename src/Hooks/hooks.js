@@ -65,10 +65,8 @@ export const ShortNameGenerate = (name) => {
 };
 
 export const CheckValidity = (value, rules) => {
-  console.log("🚀 ~ file: hooks.js ~ line 68 ~ CheckValidity ~ rules", rules);
   let isValid = true;
   if (!rules) {
-    console.log("hi");
     return true;
   }
 

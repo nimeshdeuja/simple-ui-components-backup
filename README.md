@@ -36,7 +36,7 @@ let ShortedArr = ShortArray(UpdatedArr, "name", "ASC"); // return [{name: 'Abhis
 
 let index = GetIndexBy(ShortedArr, "age", 34); // return 0 -- Number
 
-let shortName = ShortNameGenerate("Nimesh Deuja"); // return ND -- String
+let ShortName = ShortNameGenerate("Nimesh Deuja"); // return ND -- String
 ```
 
 ### Dialog
@@ -49,11 +49,11 @@ import { Dialog } from "simple-ui-components";
   size="md" // *String* options 'sm', 'md', 'lg'
   close={()=>} // *Function* close popup function
   open={true} // *Boolen*
-  title="Simple dailog box" // *String*
+  title="Simple dialog box" // *String*
   isMultipleButton={true} // *Boolen*
 >
-  <main>Dailog box body content.</main>
-  <footer>Dailog box footer content.</footer>
+  <main>Dialog box body content.</main>
+  <footer>Dialog box footer content.</footer>
 </Dialog>
 ```
 
