@@ -89,7 +89,7 @@ const [form, setForm] = useState({
     },
     valid: false,
     touched: false,
-    className: "myClassName",
+    className: "myClass",
     inputStyle: {
       width: "half",
       isFirst: true,
@@ -154,7 +154,7 @@ const [form, setForm] = useState({
       isFirst: true,
     },
   },
-  radio: {
+  maritalStatus: {
     elementType: "radio",
     elementConfig: {
       labelText: "left", // 'left', 'right'
@@ -164,7 +164,7 @@ const [form, setForm] = useState({
       ],
     },
     label: "Are you married?",
-    value: "",
+    value: "yes", // selected value can be value
     validation: {},
     valid: false,
     touched: false,
@@ -230,7 +230,7 @@ const inputChangeHandler = (value, controlName) => {
 };
 
 const formElementsArray = [];
-for (let key in allForm) {
+for (let key in form) {
   formElementsArray.push({
     id: key,
     config: form[key],
