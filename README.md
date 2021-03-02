@@ -39,12 +39,12 @@ let index = GetIndexBy(ShortedArr, "age", 34); // return 0 -- Number
 let shortName = ShortNameGenerate("Nimesh Deuja"); // return ND -- String
 ```
 
-### Dailog
+### Dialog
 
 ```jsx
-import { Dailog } from "simple-ui-components";
+import { Dialog } from "simple-ui-components";
 
-<Dailog
+<Dialog
   theme="default" // *String* options 'default', 'primary', 'secandary', 'danger'
   size="md" // *String* options 'sm', 'md', 'lg'
   close={()=>} // *Function* close popup function
@@ -54,9 +54,9 @@ import { Dailog } from "simple-ui-components";
 >
   <main>Dailog box body content.</main>
   <footer>Dailog box footer content.</footer>
-</Dailog>
+</Dialog>
 ```
 
-## Auther
+## Author
 
 Nimesh Deuja

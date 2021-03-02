@@ -1,0 +1,30 @@
+.default > div {
+  width: 100%;
+}
+
+.default > .text {
+  background-color: blueviolet !important;
+}
+.default > .password {
+  background-color: blueviolet !important;
+}
+.default > .select {
+  background-color: blueviolet !important;
+}
+.default > .checkbox {
+  background-color: blueviolet !important;
+}
+.default > .radio {
+  background-color: blueviolet !important;
+}
+.default > .textarea {
+  background-color: blueviolet !important;
+}
+
+.default > .file {
+  background-color: blueviolet !important;
+}
+
+.error {
+  color: rgb(244, 67, 54);
+}

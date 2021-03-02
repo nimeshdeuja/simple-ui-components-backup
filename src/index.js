@@ -1,4 +1,6 @@
 import * as Hooks from "./Hooks/hooks";
-import Dailog from "./Dailog/dailog";
+import Dialog from "./Dialog/dialog";
+import Input from "./Input/input";
+import Form from "./Input/form";
 
-export { Hooks, Dailog };
+export { Hooks, Dialog, Input, Form };

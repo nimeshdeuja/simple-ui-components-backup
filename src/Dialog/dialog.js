@@ -1,21 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import style from "./dailog.module.css";
+import style from "./dialog.module.css";
 
-const Dailog = (props) => {
+const Dialog = (props) => {
   const closeAllClickHandler = (event) => {
     if (event.target && event.target.title === props.title) {
       props.close();
     }
   };
-  let moduleSize = "md";
-  if (props.size) moduleSize = props.size;
-
-  let isMultipleButton = "";
-  if (props.isMultipleButton) isMultipleButton = "multipal";
-
-  let themeElementClass = "default";
-  if (props.theme) themeElementClass = props.theme;
+  let moduleSize = props.size ? props.size : "md";
+  let isMultipleButton = props.isMultipleButton ? "multipal" : "";
+  let themeElementClass = props.theme ? props.theme : "default";
 
   let dailogElement = null;
   if (props.open)
@@ -38,7 +33,7 @@ const Dailog = (props) => {
   return dailogElement;
 };
 
-Dailog.prototype = {
+Dialog.prototype = {
   theme: PropTypes.string,
   size: PropTypes.string,
   isMultipleButton: PropTypes.bool,
@@ -47,4 +42,4 @@ Dailog.prototype = {
   title: PropTypes.string.isRequired,
 };
 
-export default Dailog;
+export default Dialog;
