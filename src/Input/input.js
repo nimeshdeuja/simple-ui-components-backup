@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./form.module.css";
+import "./form.css";
 
 var uploadedFile = {};
 
 const Input = (props) => {
   const {
-    label,
     elementConfig,
     elementType,
     changed,
@@ -18,9 +17,10 @@ const Input = (props) => {
     autoComplete = "Off",
   } = props;
 
-  let classes = `${invalid && shouldValidate && touched ? styles.error : ""} ${[
-    className,
-  ]}`;
+  let inputStyleClass = inputStyle.width ? inputStyle.width : "";
+  let isFirstElement = inputStyle.isLast ? "last" : "";
+
+  let error = invalid && shouldValidate && touched ? "error" : "";
 
   let defaultInput = null;
   const uploadImageHandler = (event) => {
@@ -36,33 +36,31 @@ const Input = (props) => {
 
   if (elementConfig && elementConfig.type === "password") {
     defaultInput = (
-      <React.Fragment>
-        <label className={classes}>
-          {label}
-          <input
-            type="password"
-            placeholder={elementConfig.placeholder}
-            value={value}
-            autoComplete={autoComplete}
-            onChange={(event) => changed(event.target.value, event)}
-          />
-        </label>
-      </React.Fragment>
+      <div
+        className={`custom-field ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+      >
+        <input
+          type="password"
+          value={value}
+          autoComplete={autoComplete}
+          onChange={(event) => changed(event.target.value, event)}
+        />
+        <span className="placeholder">{elementConfig.placeholder}</span>
+      </div>
     );
   } else {
     defaultInput = (
-      <React.Fragment>
-        <label className={classes}>
-          {label}
-          <input
-            type="text"
-            placeholder={elementConfig.placeholder}
-            value={value}
-            autoComplete={autoComplete}
-            onChange={(event) => changed(event.target.value, event)}
-          />
-        </label>
-      </React.Fragment>
+      <div
+        className={`custom-field ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+      >
+        <input
+          type="text"
+          value={value}
+          autoComplete={autoComplete}
+          onChange={(event) => changed(event.target.value, event)}
+        />
+        <span className="placeholder">{elementConfig.placeholder}</span>
+      </div>
     );
   }
 
@@ -73,40 +71,38 @@ const Input = (props) => {
       break;
     case "textarea":
       inputElement = (
-        <React.Fragment>
-          <label className={classes}>
-            {label}
-            <textarea
-              placeholder={elementConfig && elementConfig.placeholder}
-              onChange={(event) => changed(event.target.value, event)}
-              value={value}
-              rows={
-                elementConfig && elementConfig.rows ? elementConfig.rows : 4
-              }
-            ></textarea>
-          </label>
-        </React.Fragment>
+        <div
+          className={`custom-textarea ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+        >
+          <textarea
+            onChange={(event) => changed(event.target.value, event)}
+            value={value}
+            rows={elementConfig && elementConfig.rows ? elementConfig.rows : 4}
+          ></textarea>
+          <span className="placeholder">{elementConfig.placeholder}</span>
+        </div>
       );
       break;
     case "select":
       inputElement = (
-        <React.Fragment>
-          <label className={classes}>
-            {label}
-            {elementConfig && (
-              <select
-                onChange={(event) => changed(event.target.value, event)}
-                defaultValue={value}
-              >
-                {elementConfig.options.map((item, index) => (
-                  <option value={item.id} key={index}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            )}
-          </label>
-        </React.Fragment>
+        <div
+          className={`custom-select ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+        >
+          <div className="holder">
+            <select
+              onChange={(event) => changed(event.target.value, event)}
+              defaultValue={value}
+            >
+              {elementConfig.options.map((item, index) => (
+                <option value={item.id} key={index}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            <span className="arrow"></span>
+          </div>
+          <span className="placeholder">{elementConfig.placeholder}</span>
+        </div>
       );
       break;
     case "checkbox":
@@ -120,7 +116,7 @@ const Input = (props) => {
       );
       let checkboxElement = (
         <>
-          {label}
+          {elementConfig.placeholder}
           {ele}
         </>
       );
@@ -128,23 +124,26 @@ const Input = (props) => {
         checkboxElement = (
           <>
             {ele}
-            {label}
+            {elementConfig.placeholder}
           </>
         );
       inputElement = (
-        <React.Fragment>
-          {elementConfig && (
-            <label className={`${classes} ${styles[elementConfig.labelText]}`}>
-              {checkboxElement}
-            </label>
+        <div
+          className={`custom-checkbox ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+        >
+          {elementConfig.label !== "" && (
+            <span className="title">{elementConfig.label}</span>
           )}
-        </React.Fragment>
+          <label className={elementConfig.labelText}>{checkboxElement}</label>
+        </div>
       );
       break;
     case "radio":
       inputElement = (
-        <React.Fragment>
-          <div>{label}</div>
+        <div
+          className={`custom-radio ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+        >
+          <span className="placeholder">{elementConfig.placeholder}</span>
           {elementConfig &&
             elementConfig.options.map((item, index) => {
               let ele = (
@@ -171,20 +170,19 @@ const Input = (props) => {
                 );
 
               return (
-                <label
-                  className={`${classes} ${styles[elementConfig.labelText]}`}
-                  key={index}
-                >
+                <label className={elementConfig.labelText} key={index}>
                   {radioElement}
                 </label>
               );
             })}
-        </React.Fragment>
+        </div>
       );
       break;
     case "file":
       inputElement = (
-        <label className={classes}>
+        <div
+          className={`custom-file ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+        >
           <span
             onClick={(event) => {
               event.preventDefault();
@@ -192,7 +190,7 @@ const Input = (props) => {
               button.click();
             }}
           >
-            {label}
+            {elementConfig.placeholder}
           </span>
           {uploadedFile && uploadedFile[elementConfig.name] && (
             <div>
@@ -215,29 +213,13 @@ const Input = (props) => {
             onChange={uploadImageHandler}
             style={{ display: "none" }}
           />
-        </label>
+        </div>
       );
       break;
     default:
       inputElement = defaultInput;
   }
-  let classElement = "text";
-  if (elementType) {
-    classElement = elementType;
-    if (elementConfig && elementConfig.type) {
-      classElement = elementConfig.type;
-    }
-  }
-
-  let inputStyleClass = inputStyle.width ? inputStyle.width : "full";
-  let isFirstElement = inputStyle.isFirst ? "first" : "notFirst";
-  return (
-    <div
-      className={`${styles[classElement]} ${styles[inputStyleClass]} ${styles[isFirstElement]}`}
-    >
-      {inputElement}
-    </div>
-  );
+  return inputElement;
 };
 
 export default Input;
