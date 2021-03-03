@@ -1,6 +1,6 @@
 {
   "name": "simple-ui-components",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "All kind of react components.",
   "main": "./build/index.js",
   "scripts": {
