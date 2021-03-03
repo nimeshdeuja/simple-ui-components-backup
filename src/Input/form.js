@@ -12,6 +12,7 @@ const Form = (props) => {
     <form
       onSubmit={submitClickHandler}
       className={`simple-form ${formDesignClass}`}
+      autoComplete="Off"
     >
       {props.children}
     </form>

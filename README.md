@@ -24,19 +24,23 @@ const {
 } = Hooks;
 
 let OldObj = { name: "Nimesh Deuja" };
-let UpdatedObj = UpdateObject(OldObj, { age: 32 }); // return {name: 'Nimesh Deuja', age: 32} -- Object
+let UpdatedObj = UpdateObject(OldObj, { age: 32 });
+// return {name: 'Nimesh Deuja', age: 32}
 
 let OldArr = [{ name: "Nimesh Deuja", age: 32 }];
 let UpdatedArr = UpdateArray(OldArr, {
   name: "Abhisekh Deoja",
   age: 34,
-}); // return [{name: 'Nimesh Deuja', age: 32},{name: 'Abhisekh Deoja',age: 34}] -- Array
+});
+// return [{name: 'Nimesh Deuja', age: 32},{name: 'Abhisekh Deoja',age: 34}]
 
-let ShortedArr = ShortArray(UpdatedArr, "name", "ASC"); // return [{name: 'Abhisekh Deoja',age: 34},{name: 'Nimesh Deuja', age: 32}] -- Array
+let ShortedArr = ShortArray(UpdatedArr, "name", "ASC");
+// return [{name: 'Abhisekh Deoja',age: 34},{name: 'Nimesh Deuja', age: 32}]
 
-let index = GetIndexBy(ShortedArr, "age", 34); // return 0 -- Number
+let index = GetIndexBy(ShortedArr, "age", 34);
 
-let ShortName = ShortNameGenerate("Nimesh Deuja"); // return ND -- String
+let ShortName = ShortNameGenerate("Nimesh Deuja");
+// return 'ND'
 ```
 
 ### Dialog
@@ -45,15 +49,17 @@ let ShortName = ShortNameGenerate("Nimesh Deuja"); // return ND -- String
 import {  Dialog, DialogBody, DialogFooter, } from "simple-ui-components";
 
 <Dialog
-  theme="default" // *String* options 'default', 'primary', 'secandary', 'danger'
-  size="md" // *String* options 'sm', 'md', 'lg'
-  close={()=>} // *Function* close popup function
-  open={true} // *Boolen*
-  title="Simple dialog box" // *String*
+  theme="default" // options: 'default', 'primary', 'secandary', 'danger'
+  size="md" // options: 'sm', 'md', 'lg'
+  close={()=>}
+  open={true}
+  title="Simple dialog box"
 >
   <DialogBody>Dialog box body content.</DialogBody>
-  <DialogFooter  multiple={true} // *Boolen*
-  >Dialog box footer content.</DialogFooter>
+  <DialogFooter
+    multiple={true}
+  >
+  Dialog box footer content.</DialogFooter>
 </Dialog>
 ```
 
@@ -78,9 +84,8 @@ const [form, setForm] = useState({
     elementType: "input",
     elementConfig: {
       type: "text",
-      placeholder: "Your name",
+      placeholder: "Name",
     },
-    label: "Name",
     value: "",
     validation: {
       required: true,
@@ -92,16 +97,17 @@ const [form, setForm] = useState({
     className: "myClass",
     inputStyle: {
       width: "half",
-      isFirst: true,
+      isLast: false,
     },
   },
   password: {
     elementType: "input",
     elementConfig: {
       type: "password",
-      placeholder: "Your password",
+      placeholder: "Password",
+      showPassword: true,
+      id: "password", // Id should be unique.
     },
-    label: "Password",
     value: "",
     validation: {
       required: true,
@@ -112,36 +118,50 @@ const [form, setForm] = useState({
     touched: false,
     inputStyle: {
       width: "half",
-      isFirst: false,
+      isLast: true,
     },
+  },
+  email: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Email",
+    },
+    value: "",
+    validation: {
+      required: true,
+      min: 6,
+      max: 30,
+    },
+    valid: false,
+    touched: false,
+    inputStyle: {},
   },
   occupation: {
     elementType: "select",
     elementConfig: {
+      placeholder: "Your occupation",
       options: [
         { id: "", name: "Select", value: "" },
         { id: "1", name: "Developer", value: "developer" },
         { id: "2", name: "UI/UX Designer", value: "designer" },
       ],
     },
-    label: "Your occupation",
-    value: "1", // selected value can be id
+    value: "", // selected value can be options id
     validation: {
       required: true,
     },
     valid: false,
     touched: false,
-    inputStyle: {
-      width: "full",
-      isFirst: true,
-    },
+    inputStyle: {},
   },
   status: {
     elementType: "checkbox",
     elementConfig: {
-      labelText: "right", // 'left', 'right'
+      label: "Looking for full time job?",
+      placeholder: "Yes i am!",
+      labelText: "right", //options: 'left', 'right'
     },
-    label: "Looking for full time job",
     value: true,
     validation: {
       required: true,
@@ -149,52 +169,42 @@ const [form, setForm] = useState({
     },
     valid: false,
     touched: false,
-    inputStyle: {
-      width: "full",
-      isFirst: true,
-    },
+    inputStyle: {},
   },
   maritalStatus: {
     elementType: "radio",
     elementConfig: {
-      labelText: "left", // 'left', 'right'
+      placeholder: "Are you married?",
+      labelText: "right", //options: 'left', 'right'
       options: [
         { label: "Yes", value: "yes", name: "yesNo" },
         { label: "No", value: "no", name: "yesNo" },
       ],
     },
-    label: "Are you married?",
-    value: "yes", // selected value can be value
+    value: "", // selected value can be options value
     validation: {},
     valid: false,
     touched: false,
-    inputStyle: {
-      width: "full",
-      isFirst: true,
-    },
+    inputStyle: {},
   },
   file: {
     elementType: "file",
     elementConfig: {
+      placeholder: "Upload CV",
       name: "upload_file",
     },
-    label: "Upload CV",
     value: "",
     validation: {},
     valid: false,
     touched: false,
-    inputStyle: {
-      width: "full",
-      isFirst: true,
-    },
+    inputStyle: {},
   },
   feedback: {
     elementType: "textarea",
     elementConfig: {
-      placeholder: "Give us your feedback",
+      placeholder: "Your feedback",
       rows: 10,
     },
-    label: "Feedback",
     value: "",
     validation: {
       required: true,
@@ -203,10 +213,7 @@ const [form, setForm] = useState({
     },
     valid: false,
     touched: false,
-    inputStyle: {
-      width: "full",
-      isFirst: true,
-    },
+    inputStyle: {},
   },
 });
 
@@ -244,7 +251,10 @@ const submitClickHandler = (event) => {
   }
 };
 
-<Form submit={submitClickHandler} layout="default">
+<Form
+  submit={submitClickHandler}
+  layout="default" // options: 'default', 'outline'
+>
   {formElementsArray.map((formElement) => (
     <Input
       key={formElement.id}
@@ -261,6 +271,19 @@ const submitClickHandler = (event) => {
     />
   ))}
 </Form>;
+```
+
+### Tooltip
+
+```jsx
+import { Tooltip } from "simple-ui-components";
+
+<Tooltip
+  text="Tooltip text"
+  placement="left" // options: 'top', 'right', 'bottom', 'left'
+>
+  Hover me
+</Tooltip>;
 ```
 
 ## Author

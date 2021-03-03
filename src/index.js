@@ -4,5 +4,6 @@ import DialogBody from "./Dialog/dailogBody";
 import DialogFooter from "./Dialog/dailogFooter";
 import Input from "./Input/input";
 import Form from "./Input/form";
+import Tooltip from "./Tooltip/tooltip";
 
-export { Hooks, Dialog, DialogBody, DialogFooter, Input, Form };
+export { Hooks, Dialog, DialogBody, DialogFooter, Input, Form, Tooltip };

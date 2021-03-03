@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./form.css";
+import "./form-default.css";
+import "./form-outline.css";
 
 var uploadedFile = {};
 
@@ -9,14 +11,13 @@ const Input = (props) => {
     elementType,
     changed,
     value,
-    className,
+    className = "",
     invalid,
     shouldValidate,
     touched,
     inputStyle,
-    autoComplete = "Off",
+    autoComplete = "Off - text",
   } = props;
-
   let inputStyleClass = inputStyle.width ? inputStyle.width : "";
   let isFirstElement = inputStyle.isLast ? "last" : "";
 
@@ -42,10 +43,37 @@ const Input = (props) => {
         <input
           type="password"
           value={value}
+          id={elementConfig.id}
+          className={value.length > 0 ? "focused" : ""}
           autoComplete={autoComplete}
           onChange={(event) => changed(event.target.value, event)}
+          onBlur={(event) => {
+            if (event.target.value.length > 0) {
+              event.target.classList.add("focused");
+            } else {
+              event.target.classList.remove("focused");
+            }
+          }}
         />
         <span className="placeholder">{elementConfig.placeholder}</span>
+
+        {elementConfig.showPassword && (
+          <span
+            className="showHidePassword"
+            id={elementConfig.id + "showHide"}
+            onClick={(event) => {
+              let el = document.getElementById([elementConfig.id]);
+              el.type = el.type === "text" ? "password" : "text";
+              let textElement = document.getElementById(
+                [elementConfig.id] + "showHide"
+              );
+              textElement.innerHTML =
+                textElement.innerHTML === "Show" ? "Hide" : "Show";
+            }}
+          >
+            Show
+          </span>
+        )}
       </div>
     );
   } else {
@@ -56,8 +84,16 @@ const Input = (props) => {
         <input
           type="text"
           value={value}
+          className={value.length > 0 ? "focused" : ""}
           autoComplete={autoComplete}
           onChange={(event) => changed(event.target.value, event)}
+          onBlur={(event) => {
+            if (event.target.value.length > 0) {
+              event.target.classList.add("focused");
+            } else {
+              event.target.classList.remove("focused");
+            }
+          }}
         />
         <span className="placeholder">{elementConfig.placeholder}</span>
       </div>
@@ -75,9 +111,17 @@ const Input = (props) => {
           className={`custom-textarea ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
         >
           <textarea
-            onChange={(event) => changed(event.target.value, event)}
             value={value}
+            className={value.length > 0 ? "focused" : ""}
             rows={elementConfig && elementConfig.rows ? elementConfig.rows : 4}
+            onChange={(event) => changed(event.target.value, event)}
+            onBlur={(event) => {
+              if (event.target.value.length > 0) {
+                event.target.classList.add("focused");
+              } else {
+                event.target.classList.remove("focused");
+              }
+            }}
           ></textarea>
           <span className="placeholder">{elementConfig.placeholder}</span>
         </div>
@@ -101,7 +145,9 @@ const Input = (props) => {
             </select>
             <span className="arrow"></span>
           </div>
-          <span className="placeholder">{elementConfig.placeholder}</span>
+          <span className="placeholder focused">
+            {elementConfig.placeholder}
+          </span>
         </div>
       );
       break;

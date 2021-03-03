@@ -41,7 +41,9 @@
   color: rgb(244, 67, 54) !important;
   border: 1px solid rgba(244, 67, 54.0625) !important;
 }
-.error .arrow {
+.error .arrow,
+.error .showHidePassword {
+  color: rgba(255, 255, 255, 0.5) !important;
   background-color: rgba(244, 67, 54.0625) !important;
 }
 .error .arrow::before {
@@ -50,57 +52,6 @@
 .error .arrow::after {
   border-top: var(--size) solid rgba(255, 255, 255, 0.5) !important;
 }
-
-/* Input filed start */
-.custom-field {
-  position: relative;
-  width: 100%;
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  padding-top: var(--paddingTop);
-  margin-bottom: var(--marginBottom);
-}
-.custom-field input {
-  border: none;
-  -webkit-appearance: none;
-  -ms-accelerator: none;
-  -moz-appearance: none;
-  appearance: none;
-  resize: none;
-  outline: none;
-  padding: 10px;
-  width: calc(100% - 22px);
-  border-radius: var(--borderRadius);
-  background: var(--background);
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  color: var(--color);
-  border: var(--borderColor);
-}
-.custom-field .placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/* Input filed end */
-
-/*
-.custom-field .placeholder {
-  position: absolute;
-  left: 12px;
-  top: calc(50% + 10px);
-  transform: translateY(-50%);
-  color: #aaa;
-  transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
-}
-.custom-field input:valid + .placeholder,
-.custom-field input:focus + .placeholder {
-  top: 10px;
-  font-size: 10px;
-  color: #222;
-}
-*/
-
 /* Upload File Style start*/
 .custom-file {
   display: flex;
@@ -172,83 +123,7 @@
   margin-bottom: var(--smallMarginBottom);
 }
 /* Checkbos Style end*/
-/* Select Style start*/
-.custom-select {
-  position: relative;
-  width: 100%;
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  padding-top: var(--paddingTop);
-  margin-bottom: var(--marginBottom);
-}
-.custom-select .holder {
-  position: relative;
-}
-.custom-select .holder select {
-  border: none;
-  -webkit-appearance: none;
-  -ms-accelerator: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 10px 40px 10px 10px;
-  width: 100%;
-  outline: none;
-  border-radius: var(--borderRadius);
-  background: var(--background);
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  color: var(--color);
-  border: var(--borderColor);
-}
-.custom-select .holder .arrow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  background-color: #dcdcdc;
-  height: 100%;
-  width: 30px;
-  border-radius: 0 3px 3px 0;
-  pointer-events: none;
-}
-.custom-select .holder .arrow::before,
-.custom-select .holder .arrow::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.custom-select .holder .arrow::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-bottom: var(--size) solid #555555;
-  top: 35%;
-}
-.custom-select .holder .arrow::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid #555555;
-  top: 65%;
-}
-.custom-select .placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/* Select Style end*/
-/* Textarea Style start*/
-.custom-textarea {
-  position: relative;
-  width: 100%;
-  font-family: var(--fontFamily);
-  font-size: var(--fontSize);
-  padding-top: var(--paddingTop);
-  margin-bottom: var(--marginBottom);
-}
-.custom-textarea textarea {
+.custom-field input {
   border: none;
   -webkit-appearance: none;
   -ms-accelerator: none;
@@ -256,28 +131,10 @@
   appearance: none;
   resize: none;
   outline: none;
-  padding: 10px;
-  width: calc(100% - 22px);
-  border-radius: var(--borderRadius);
-  background: var(--background);
+  width: 100%;
+  position: relative;
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
-  color: var(--color);
-  border: var(--borderColor);
+  padding-top: var(--paddingTop);
+  margin-bottom: var(--marginBottom);
 }
-.custom-textarea .placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/* Textarea Style end*/
-
-/*
-.custom-field input:focus::placeholder {
-  color: transparent;
-}
-.custom-field input::placeholder {
-  color: #222;
-  transition: color 0.3s ease;
-}
-*/
