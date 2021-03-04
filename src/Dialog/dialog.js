@@ -15,7 +15,7 @@ const Dialog = (props) => {
   if (props.open)
     dailogElement = (
       <div
-        className={styles.modal}
+        className={`${styles.modal} ${props.className ? props.className : ""}`}
         onClick={closeAllClickHandler}
         title={props.title}
       >
@@ -38,6 +38,7 @@ Dialog.prototype = {
   close: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default Dialog;

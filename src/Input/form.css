@@ -39,12 +39,12 @@
 .error select,
 .error textarea {
   color: rgb(244, 67, 54) !important;
-  border: 1px solid rgba(244, 67, 54.0625) !important;
+  border: 1px solid rgba(244, 67, 54) !important;
 }
 .error .arrow,
 .error .showHidePassword {
   color: rgba(255, 255, 255, 0.5) !important;
-  background-color: rgba(244, 67, 54.0625) !important;
+  background-color: rgba(244, 67, 54) !important;
 }
 .error .arrow::before {
   border-bottom: var(--size) solid rgba(255, 255, 255, 0.5) !important;

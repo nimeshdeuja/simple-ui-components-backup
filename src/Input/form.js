@@ -11,7 +11,9 @@ const Form = (props) => {
   return (
     <form
       onSubmit={submitClickHandler}
-      className={`simple-form ${formDesignClass}`}
+      className={`simple-form ${formDesignClass} ${
+        props.className ? props.className : ""
+      }`}
       autoComplete="Off"
     >
       {props.children}
@@ -21,6 +23,7 @@ const Form = (props) => {
 
 Form.prototype = {
   formStyle: PropTypes.string, // options 'default', 'outline'
+  className: PropTypes.string,
 };
 
 export default Form;

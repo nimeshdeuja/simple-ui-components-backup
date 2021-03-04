@@ -54,12 +54,19 @@ import {  Dialog, DialogBody, DialogFooter, } from "simple-ui-components";
   close={()=>}
   open={true}
   title="Simple dialog box"
+  className="myClass"
 >
-  <DialogBody>Dialog box body content.</DialogBody>
-  <DialogFooter
-    multiple={true}
-  >
-  Dialog box footer content.</DialogFooter>
+    <DialogBody
+      className="myClass"
+    >
+      Dialog box body content.
+    </DialogBody>
+    <DialogFooter
+      multiple={true}
+      className="myClass"
+    >
+    Dialog box footer content.
+    </DialogFooter>
 </Dialog>
 ```
 
@@ -281,9 +288,27 @@ import { Tooltip } from "simple-ui-components";
 <Tooltip
   text="Tooltip text"
   placement="left" // options: 'top', 'right', 'bottom', 'left'
+  className="myClass"
 >
   Hover me
 </Tooltip>;
+```
+
+### Button
+
+```jsx
+import { Button } from "simple-ui-components";
+
+<Button
+  type="button" // options 'button', 'submit'
+  theme="default" // options 'default', 'primary', 'secondary', 'danger'
+  clicked={() => console.log("simple button was clicked!")}
+  style={{ height: 40 }}
+  className="myClass"
+  disabled={false}
+>
+  Click me
+</Button>;
 ```
 
 ## Author
