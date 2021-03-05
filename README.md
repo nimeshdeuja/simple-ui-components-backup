@@ -286,9 +286,10 @@ const submitClickHandler = (event) => {
 import { Tooltip } from "simple-ui-components";
 
 <Tooltip
-  text="Tooltip text"
-  placement="left" // options: 'top', 'right', 'bottom', 'left'
-  className="myClass"
+  text="Tooltip Content"
+  placement="left" // options 'top', 'left', 'right', 'bottom'
+  space={10}
+  disabled={false}
 >
   Hover me
 </Tooltip>;
