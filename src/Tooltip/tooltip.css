@@ -1,30 +1,36 @@
-.tooltiptext {
+.simple-tooltip {
   visibility: hidden;
   background-color: #555;
   color: #fff;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 10px;
   position: absolute;
   z-index: 9999;
   font-size: 12px;
 }
 
-.tooltiptext > span {
+.simple-arrow-top {
   position: absolute;
   border-width: 5px;
   border-style: solid;
-}
-
-.top {
   border-color: #555 transparent transparent transparent;
 }
-.left {
+.simple-arrow-left {
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
   border-color: transparent transparent transparent #555;
 }
-.right {
+.simple-arrow-right {
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
   border-color: transparent #555 transparent transparent;
 }
-.bottom {
+.simple-arrow-bottom {
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
   border-color: transparent transparent #555 transparent;
 }

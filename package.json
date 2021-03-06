@@ -1,6 +1,6 @@
 {
   "name": "simple-ui-components",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "All kind of react components.",
   "main": "./build/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
     "@babel/preset-react": "7.12.13",
     "babel-loader": "^8.2.2",
     "css-loader": "5.1.0",
@@ -20,8 +20,7 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "17.0.1"
   },
   "repository": {
     "type": "git",

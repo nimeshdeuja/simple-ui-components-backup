@@ -5,6 +5,7 @@ import DialogFooter from "./Dialog/dailogFooter";
 import Input from "./Input/input";
 import Form from "./Input/form";
 import Tooltip from "./Tooltip/tooltip";
+import TooltipContainer from "./Tooltip/tooltipContainer";
 import Button from "./Button/button";
 
 export {
@@ -15,5 +16,6 @@ export {
   Input,
   Form,
   Tooltip,
+  TooltipContainer,
   Button,
 };

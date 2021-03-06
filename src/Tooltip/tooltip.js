@@ -1,15 +1,6 @@
 import React from "react";
-import Portal from "./portal";
-import styles from "./tooltip.module.css";
+import "./tooltip.css";
 import PropTypes from "prop-types";
-
-function uuidv4() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
 
 const position = (p) => ({
   current: p,
@@ -42,7 +33,8 @@ const point = () => ({
   },
 });
 
-const getPoints = (el, tt, placement, space, arrow) => {
+const getPoints = (el, tt, placement, space) => {
+  const arrow = document.getElementById(`simple-arrow`);
   let recurCounter = 0;
   const pt = point();
 
@@ -116,7 +108,7 @@ const getArrowPoint = (placement, content, arrow) => {
       break;
   }
   arrow.className = "";
-  arrow.classList.add(`${styles[placement]}`);
+  arrow.classList.add(`simple-arrow-${placement}`);
 };
 
 const Tooltip = ({
@@ -126,24 +118,20 @@ const Tooltip = ({
   children,
   disabled = 0,
 }) => {
-  let uid = uuidv4();
-
   const handleMOver = (e) => {
-    const content = document.getElementById(`${uid}`);
-    const arrow = document.getElementById(`${uid}arrow`);
-    const { x, y } = getPoints(
-      e.currentTarget,
-      content,
-      placement,
-      space,
-      arrow
-    );
+    const content = document.getElementById(`simple-tooltip`);
+    content.className = "";
+    content.innerHTML = `${text}
+        <span id='simple-arrow' class='simple-arrow-${placement}'></span>`;
+
+    content.classList.add("simple-tooltip");
+    const { x, y } = getPoints(e.currentTarget, content, placement, space);
     content.style.left = x + "px";
     content.style.top = y + "px";
     content.style.visibility = "visible";
   };
   const handleMOut = () => {
-    let content = document.getElementById(`${uid}`);
+    let content = document.getElementById(`simple-tooltip`);
     content.style.visibility = "hidden";
   };
 
@@ -155,14 +143,6 @@ const Tooltip = ({
             onMouseOver: handleMOver,
             onMouseOut: handleMOut,
           })}
-      {disabled || (
-        <Portal>
-          <span id={uid} className={`${styles.tooltiptext}`}>
-            {text}
-            <span id={`${uid}arrow`} className={`${styles[placement]}`}></span>
-          </span>
-        </Portal>
-      )}
     </>
   );
 };

@@ -283,7 +283,7 @@ const submitClickHandler = (event) => {
 ### Tooltip
 
 ```jsx
-import { Tooltip } from "simple-ui-components";
+import { Tooltip, TooltipContainer } from "simple-ui-components";
 
 <Tooltip
   text="Tooltip Content"
@@ -293,6 +293,8 @@ import { Tooltip } from "simple-ui-components";
 >
   Hover me
 </Tooltip>;
+
+<TooltipContainer />; // call once in root file if you are using tooltip do not call more then one time;
 ```
 
 ### Button
