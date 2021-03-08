@@ -135,16 +135,11 @@ const Tooltip = ({
     content.style.visibility = "hidden";
   };
 
-  return (
-    <>
-      {disabled
-        ? children
-        : React.cloneElement(<div>{children}</div>, {
-            onMouseOver: handleMOver,
-            onMouseOut: handleMOut,
-          })}
-    </>
-  );
+  if (disabled) return children;
+  return React.cloneElement(<div>{children}</div>, {
+    onMouseOver: handleMOver,
+    onMouseOut: handleMOut,
+  });
 };
 
 Tooltip.prototype = {
