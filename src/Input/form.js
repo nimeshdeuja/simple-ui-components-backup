@@ -2,28 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./form.css";
 
-const Form = (props) => {
+const Form = ({ layout = "default", submit, className = "", children }) => {
   const submitClickHandler = (event) => {
     event.preventDefault();
-    props.submit();
+    submit();
   };
-  let formDesignClass = props.formStyle ? props.formStyle : "default";
   return (
     <form
       onSubmit={submitClickHandler}
-      className={`simple-form ${formDesignClass} ${
-        props.className ? props.className : ""
-      }`}
+      className={`simple-form ${layout} ${className}`}
       autoComplete="Off"
     >
-      {props.children}
+      {children}
     </form>
   );
 };
 
 Form.prototype = {
-  formStyle: PropTypes.string, // options 'default', 'outline'
+  layout: PropTypes.string, // options 'default', 'outline'
   className: PropTypes.string,
+  submit: PropTypes.func.isRequired,
 };
 
 export default Form;

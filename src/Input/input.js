@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./form.css";
 import "./form-default.css";
 import "./form-outline.css";
@@ -67,11 +67,10 @@ const Input = (props) => {
               let textElement = document.getElementById(
                 [elementConfig.id] + "showHide"
               );
-              textElement.innerHTML =
-                textElement.innerHTML === "Show" ? "Hide" : "Show";
+              textElement.innerHTML = textElement.innerHTML === "S" ? "H" : "S";
             }}
           >
-            Show
+            S
           </span>
         )}
       </div>

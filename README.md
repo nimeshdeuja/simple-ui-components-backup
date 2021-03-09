@@ -1,6 +1,6 @@
 # simple-ui-components
 
-All kind of react components.
+Simple ui components.
 
 ## Install
 

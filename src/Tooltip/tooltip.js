@@ -136,7 +136,7 @@ const Tooltip = ({
   };
 
   if (disabled) return children;
-  return React.cloneElement(<div>{children}</div>, {
+  return React.cloneElement(<span>{children}</span>, {
     onMouseOver: handleMOver,
     onMouseOut: handleMOut,
   });
