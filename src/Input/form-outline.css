@@ -24,7 +24,6 @@
   width: 100%;
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
-  margin-bottom: var(--marginBottom);
 }
 .outline .custom-field input {
   padding: 10px;
@@ -185,7 +184,6 @@
   height: 38px;
   width: 30px;
   background-color: #dcdcdc;
-  font-size: 8px;
   display: flex;
   justify-content: center;
   align-items: center;

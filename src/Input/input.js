@@ -16,7 +16,7 @@ const Input = (props) => {
     shouldValidate,
     touched,
     inputStyle,
-    autoComplete = "Off - text",
+    autoComplete = "Off-text",
   } = props;
   let inputStyleClass = inputStyle.width ? inputStyle.width : "";
   let isFirstElement = inputStyle.isLast ? "last" : "";
@@ -59,7 +59,7 @@ const Input = (props) => {
 
         {elementConfig.showPassword && (
           <span
-            className="showHidePassword"
+            className="showHidePassword fa fa-eye-slash"
             id={elementConfig.id + "showHide"}
             onClick={(event) => {
               let el = document.getElementById([elementConfig.id]);
@@ -67,12 +67,43 @@ const Input = (props) => {
               let textElement = document.getElementById(
                 [elementConfig.id] + "showHide"
               );
-              textElement.innerHTML = textElement.innerHTML === "S" ? "H" : "S";
+              if (el.type === "text") {
+                textElement.classList.remove("fa-eye-slash");
+                textElement.classList.add("fa-eye");
+              } else {
+                textElement.classList.remove("fa-eye");
+                textElement.classList.add("fa-eye-slash");
+              }
             }}
-          >
-            S
-          </span>
+          ></span>
         )}
+      </div>
+    );
+  } else if (elementConfig && elementConfig.type === "number") {
+    defaultInput = (
+      <div
+        className={`custom-field ${inputStyleClass} ${isFirstElement} ${className} ${error}`}
+      >
+        <input
+          type="number"
+          value={value}
+          className={value.length > 0 ? "focused" : ""}
+          autoComplete={autoComplete}
+          onKeyDown={(e) => {
+            if (e.keyCode === 69) {
+              event.preventDefault();
+            }
+          }}
+          onChange={(event) => changed(event.target.value, event)}
+          onBlur={(event) => {
+            if (event.target.value.length > 0) {
+              event.target.classList.add("focused");
+            } else {
+              event.target.classList.remove("focused");
+            }
+          }}
+        />
+        <span className="placeholder">{elementConfig.placeholder}</span>
       </div>
     );
   } else {

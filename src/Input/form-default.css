@@ -23,7 +23,6 @@
   width: 100%;
   font-family: var(--fontFamily);
   font-size: var(--fontSize);
-  margin-bottom: var(--marginBottom);
   padding-top: var(--paddingTop);
 }
 .default .custom-field input {
@@ -164,7 +163,6 @@
   height: 38px;
   width: 30px;
   background-color: #dcdcdc;
-  font-size: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
